@@ -123,39 +123,37 @@ public class InterfaceDeConnexion extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bAnnuler, bConnecter});
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void bAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnnulerActionPerformed
-        // TODO add your handling code here:
+    private void bAnnulerActionPerformed(java.awt.event.ActionEvent evt) {
+        
         System.exit(0);
-    }//GEN-LAST:event_bAnnulerActionPerformed
+    }
 
-    private void bConnecterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConnecterActionPerformed
+    private void bConnecterActionPerformed(java.awt.event.ActionEvent evt) {
         utilis = utilisChamp.getText();
         mdps = mdpChamp.getText();
         String sql = "INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe) VALUES (?, ?)";
         Connection connection = null;
 
         try {
-            // Connexion à la base de données
+            
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            // Paramétrage de la requête SQL
+            
             preparedStatement.setString(1, utilis);
             preparedStatement.setString(2, mdps);
 
-            // Exécution de la requête
+            
             int rowsAffected = preparedStatement.executeUpdate();
             System.out.println("Utilisateur ajouté avec succès, " + rowsAffected + " ligne(s) affectée(s).");
             utilisChamp.setText("");
             mdpChamp.setText("");
 
         } catch (SQLException ex) {
-            // Gérer les erreurs de connexion et d'exécution SQL
             Logger.getLogger(InterfaceDeConnexion.class.getName()).log(Level.SEVERE, "Erreur de connexion ou d'insertion : ", ex);
         } finally {
-            // Assurez-vous de fermer la connexion si elle a été établie
             try {
                 if (connection != null && !connection.isClosed()) {
                     connection.close();

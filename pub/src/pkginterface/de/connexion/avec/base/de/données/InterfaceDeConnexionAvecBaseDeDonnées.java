@@ -24,7 +24,7 @@ public class InterfaceDeConnexionAvecBaseDeDonnées {
         // TODO code application logic here
         
         try {
-        Class.forName("com.mysql.cj.jdbc.Driver");  // Charger le driver JDBC
+        Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
         Logger.getLogger(InterfaceDeConnexion.class.getName()).log(Level.SEVERE, null, ex);
         }
